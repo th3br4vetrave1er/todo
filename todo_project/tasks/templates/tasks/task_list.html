@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список задач</title>
+</head>
+<body>
+    <h1>Мои задачи</h1>
+    <a href="{% url 'add_task' %}">Добавить задачу</a>
+    <ul>
+    {% for task in tasks %}
+        <li>
+            {{ task.title }} - {{ task.description }}
+            {% if not task.completed %}
+                <a href="{% url 'complete_task' task.id %}">Выполнить</a>
+            {% else %}
+                (Выполнено)
+            {% endif %}
+        </li>
+    {% empty %}
+        <li>Задач пока нет</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
